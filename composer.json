@@ -1,5 +1,5 @@
 {
-    "name": "symfony/messenger",
+    "name": "dor-denis/messenger",
     "type": "library",
     "description": "Helps applications send and receive messages to/from other applications or via message queues",
     "keywords": [],
