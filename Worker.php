@@ -35,11 +35,11 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
  */
 class Worker
 {
-    private $receivers;
-    private $bus;
-    private $eventDispatcher;
-    private $logger;
-    private $shouldStop = false;
+    protected $receivers;
+    protected $bus;
+    protected $eventDispatcher;
+    protected $logger;
+    protected $shouldStop = false;
 
     /**
      * @param ReceiverInterface[] $receivers Where the key is the transport name
@@ -115,7 +115,7 @@ class Worker
         $this->dispatchEvent(new WorkerStoppedEvent($this));
     }
 
-    private function handleMessage(Envelope $envelope, ReceiverInterface $receiver, string $transportName): void
+    protected function handleMessage(Envelope $envelope, ReceiverInterface $receiver, string $transportName): void
     {
         $event = new WorkerMessageReceivedEvent($envelope, $transportName);
         $this->dispatchEvent($event);
@@ -171,7 +171,7 @@ class Worker
         $this->shouldStop = true;
     }
 
-    private function dispatchEvent(object $event): void
+    protected function dispatchEvent(object $event): void
     {
         if (null === $this->eventDispatcher) {
             return;
